@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseNotFound
 from .forms import UserForm
+from django.contrib.auth.models import User
 
 from .models import Person
 
@@ -11,6 +12,9 @@ def index(request):
     context = {"my_text": my_text, "people_kol": people_kol}
     return render(request, "firstapp/index.html", context)
 
+def about(request):
+    context = {"name": 'name = John'}
+    return render(request, 'firstapp/about.html', context)
 
 def my_form(request):
 
@@ -49,3 +53,13 @@ def delete(request, id):
         return redirect('my_form')
     except Person.DoesNotExist:
         return HttpResponseNotFound("<h2> Object not found</h2>")
+
+def user_create(request):
+    # Создать пользователя и сохранить его в базе данных
+    user = User.objects.create_user('myusername', 'myemail@example.com', 'mypassword')
+    
+    # Обновить поля и сохранить их снова
+    user.first_name = 'Mike'
+    user.last_name = 'Smit'
+    # user.save()
+    return user

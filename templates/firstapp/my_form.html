@@ -1,7 +1,13 @@
-<h1>Home Page</h1>
-<li>
-    <a href="{% url "my_form" %}">Форма</a>
-</li>
+<h1>My Form</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    
+    <input type="submit" value="Отправить">
+</form>
 
 
 <div class="container-fluid my-2">
