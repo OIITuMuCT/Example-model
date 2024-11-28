@@ -30,3 +30,9 @@ class Person(models.Model):
     age = models.IntegerField(verbose_name="Возраст клиента")
     object_person = models.Manager()
     DoesNotExist = models.Manager
+
+
+class Employee(models.Modle):
+    name = models.CharField(max_length=20)
+    salary = models.IntegerField()
+    bonus = models.ImageField()
